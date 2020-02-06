@@ -73,7 +73,7 @@ public class webServer {
                     System.out.println("header 1"+header[1]);
 
                     String[] s = soportado(header[1]);
-                    System.out.println(s[0]);
+                    System.out.println("si es error no importa"+s[0]);
 
                     if (s[0].equals("ok")) {
                         rFile = new File(ROOT, s[1] + header[1]);
@@ -87,6 +87,7 @@ public class webServer {
                     }
 
                     else {
+                        System.out.println("deberia entrar por el favicon");
                         rFile = new File(ROOT, UNSUPPORTED_MEDIA_TYPE);
                         respond(out, dataOut, rFile, "text/html", "415");
                     }
@@ -105,7 +106,7 @@ public class webServer {
             clientSocket.close();
         }
         catch (Exception e){
-            System.out.println("error misterioso");
+            System.out.println("error misterioso de me quiero morir");
             System.out.println(e);}
         }
 
@@ -113,7 +114,6 @@ public class webServer {
         in.close();
         serverSocket.close();
         clientSocket.close();
-   
 
     }
 
@@ -136,10 +136,15 @@ public class webServer {
             ans[1] = "";
             ans[2] = "text/html";
         } 
+        else if (peticionGet.endsWith(".js")) {
+            ans[0] = "ok";
+            ans[1] = "";
+            ans[2] = "application/json";
+        } 
         else {
             ans[0] = "error";
             ans[1] = "";
-            ans[2] = "";
+            ans[2] = "text/html";
         }
         return ans;
 
