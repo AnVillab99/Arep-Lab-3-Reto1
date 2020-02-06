@@ -22,9 +22,11 @@ public class webServer {
     static final String FILE_NOT_FOUND = "/NOT_FOUND.html";
     static final String METHOD_NOT_ALLOWED = "/NOT_SUPPORTED.html";
     static final String UNSUPPORTED_MEDIA_TYPE = "/NOT_SUPPORTED_MEDIA.html";
-    static final int PORT = 35000;
+    static int PORT;
 
     public static void main(String[] args) throws IOException {
+        PORT = getPort();
+        System.out.println(PORT);
 
         ServerSocket serverSocket = null;
         serverSocket = new ServerSocket(PORT);
@@ -34,7 +36,6 @@ public class webServer {
         BufferedOutputStream dataOut = null;
         Socket clientSocket = null;
         boolean conectado = true;
-      
         while (conectado) {
             try{
             
@@ -143,6 +144,13 @@ public class webServer {
         return ans;
 
     }
+
+    static int getPort() {
+        if (System.getenv("PORT") != null) {
+        return Integer.parseInt(System.getenv("PORT"));
+        }
+        return 4567; //returns default port if heroku-port isn't set
+        }
 
     private static void respond(PrintWriter out, BufferedOutputStream dataOut, File response, String type,
             String code) {
