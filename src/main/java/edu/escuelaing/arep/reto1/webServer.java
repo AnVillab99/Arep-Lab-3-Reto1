@@ -66,9 +66,9 @@ public class webServer {
 
             if (header[0].equals("GET")) {
                 File rFile = null;
-                if (header[1].equals("/")) {
+                if (header[1].equals(" ") ||header[1].equals("") ||header[1].equals("/")) {
                     rFile = new File(ROOT, DEFAULT);
-                    // respond(out, dataOut, rFile, "text/html", "200");
+                    respond(out, dataOut, rFile, "text/html", "200");
                 } else {
                     System.out.println("header 1"+header[1]);
 
