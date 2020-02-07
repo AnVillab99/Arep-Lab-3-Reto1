@@ -28,6 +28,10 @@ To run this program on local, write in console:
 > heroku local web (port:5000)
 or run directly the java code of webServer (port:4567)
 
+the existing files are : index.html
+                img1.jpg
+                img2.png
+
 index page  :
 ![index.html](https://github.com/AnVillab99/Arep-Lab-3-Reto1/blob/master/resources/img/index.png)
 
