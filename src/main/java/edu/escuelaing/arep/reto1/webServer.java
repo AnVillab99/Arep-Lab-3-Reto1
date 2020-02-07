@@ -64,13 +64,13 @@ public class webServer {
                         File rFile = null;
                         if (header[1].equals(" ") ||header[1].equals("") ||header[1].equals("/")) {
                             rFile = new File(ROOT, DEFAULT);
-                            respond(out, dataOut, rFile, "text/html", "200");
+                            respond(out, dataOut, rFile, "text/html", "200 OK");
                         } else {}
                             String[] s = soportado(header[1]);
                             if (s[0].equals("ok")) {
                                 rFile = new File(ROOT, s[1] + header[1]);
                                 if (rFile.exists()) {
-                                    respond(out, dataOut, rFile, s[2], "200");
+                                    respond(out, dataOut, rFile, s[2], "200 OK");
                                 } else {
                                     rFile = new File(ROOT, FILE_NOT_FOUND);
                                     respond(out, dataOut, rFile, "text/html", "404");
@@ -154,14 +154,12 @@ public class webServer {
     private static void respond(PrintWriter out, BufferedOutputStream dataOut, File response, String type,
             String code) {
         out.println("HTTP/1.1 " + response);
-        out.println("Server: Java HTTP Server from AnVillab99 : 1.0");
+        out.println("Server: Java HTTP Server AnVillab99 : 1.0");
         out.println("Date: " + new Date());
         out.println("Content-type: " + type);
         out.println("Content-length: " + response.length());
         out.println();
         out.flush();
-        // Content
-
         String[] con = type.split("/");
         try {
             if (con[0].equals("image")) {
