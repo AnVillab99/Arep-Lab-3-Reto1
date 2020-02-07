@@ -41,79 +41,73 @@ public class webServer {
             
                 clientSocket = serverSocket.accept();
                 System.out.println("Conectado");
-            } catch (IOException e) {
+                try{
+
+                    in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));// leer
+                    out = new PrintWriter(clientSocket.getOutputStream(), true); // devolver
+                    dataOut = new BufferedOutputStream(clientSocket.getOutputStream());
+                    String inputLine = in.readLine();
+                    String[] header = inputLine.split(" ");
+                    /*while (inputLine != null) {
+                        
+                        if (!(in.ready())) {
+                            //System.out.println("como entra aca");
+                            System.out.println("xxxxxxxxxxxxxxx");
+                            break;
+                            //break;
+                        }
+                        inputLine = in.readLine();
+        
+                    }*/
+        
+                    if (header[0].equals("GET")) {
+                        File rFile = null;
+                        if (header[1].equals(" ") ||header[1].equals("") ||header[1].equals("/")) {
+                            rFile = new File(ROOT, DEFAULT);
+                            respond(out, dataOut, rFile, "text/html", "200");
+                        } else {}
+                            String[] s = soportado(header[1]);
+                            if (s[0].equals("ok")) {
+                                rFile = new File(ROOT, s[1] + header[1]);
+                                if (rFile.exists()) {
+                                    respond(out, dataOut, rFile, s[2], "200");
+                                } else {
+                                    rFile = new File(ROOT, FILE_NOT_FOUND);
+                                    respond(out, dataOut, rFile, "text/html", "404");
+                                }
+                            }
+                            else {
+                                System.out.println("deberia entrar por el favicon");
+                                rFile = new File(ROOT, UNSUPPORTED_MEDIA_TYPE);
+                                respond(out, dataOut, rFile, "text/html", "415");
+                            }
+                        }
+                    
+                    else {
+                        File f = new File(ROOT, METHOD_NOT_ALLOWED);
+                        respond(out, dataOut, f, "text/html", "405");
+                    }
+                    out.close();
+                    in.close();
+                    dataOut.close();
+                    clientSocket.close();
+                }
+                catch (Exception e){
+                    System.out.println("error misterioso de me quiero morir");
+                    System.out.println(e);
+                }
+            } 
+            catch (IOException e) {
                 System.out.println("Error al conectar al cliente");
             }
-            try{
-
-            in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));// leer
-            out = new PrintWriter(clientSocket.getOutputStream(), true); // devolver
-            dataOut = new BufferedOutputStream(clientSocket.getOutputStream());
-            String inputLine = in.readLine();
-            String[] header = inputLine.split(" ");
-            System.out.println("i");
-            System.out.println(inputLine);
-            while (inputLine != null) {
-                if (!(in.ready())) {
-                    //System.out.println("como entra aca");
-                    System.out.println("xxxxxxxxxxxxxxx");
-                    break;
-                    //break;
-                }
-                inputLine = in.readLine();
-
-            }
-
-            if (header[0].equals("GET")) {
-                File rFile = null;
-                if (header[1].equals(" ") ||header[1].equals("") ||header[1].equals("/")) {
-                    rFile = new File(ROOT, DEFAULT);
-                    respond(out, dataOut, rFile, "text/html", "200");
-                } else {
-                    System.out.println("header 1"+header[1]);
-
-                    String[] s = soportado(header[1]);
-                    System.out.println("si es error no importa"+s[0]);
-
-                    if (s[0].equals("ok")) {
-                        rFile = new File(ROOT, s[1] + header[1]);
-                        if (rFile.exists()) {
-                            respond(out, dataOut, rFile, s[2], "200");
-
-                        } else {
-                            rFile = new File(ROOT, FILE_NOT_FOUND);
-                            respond(out, dataOut, rFile, "text/html", "404");
-                        }
-                    }
-
-                    else {
-                        System.out.println("deberia entrar por el favicon");
-                        rFile = new File(ROOT, UNSUPPORTED_MEDIA_TYPE);
-                        respond(out, dataOut, rFile, "text/html", "415");
-                    }
-
-                }
-
-            }
-
-            else {
-                File f = new File(ROOT, METHOD_NOT_ALLOWED);
-                respond(out, dataOut, f, "text/html", "405");
-            }
-            out.close();
-            in.close();
             
-            clientSocket.close();
-        }
-        catch (Exception e){
-            System.out.println("error misterioso de me quiero morir");
-            System.out.println(e);}
         }
 
         out.close();
         in.close();
-        serverSocket.close();
+        dataOut.close();
         clientSocket.close();
+        serverSocket.close();
 
     }
 
