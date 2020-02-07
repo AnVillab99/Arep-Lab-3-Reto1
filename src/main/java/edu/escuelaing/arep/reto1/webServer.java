@@ -44,7 +44,7 @@ public class webServer {
             } catch (IOException e) {
                 System.out.println("Error al conectar al cliente");
             }
-            //try{
+            try{
 
             in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));// leer
             out = new PrintWriter(clientSocket.getOutputStream(), true); // devolver
@@ -105,11 +105,10 @@ public class webServer {
             
             clientSocket.close();
         }
-        
-        /* catch (Exception e){
+        catch (Exception e){
             System.out.println("error misterioso de me quiero morir");
             System.out.println(e);}
-        }*/
+        }
 
         out.close();
         in.close();
@@ -117,7 +116,6 @@ public class webServer {
         clientSocket.close();
 
     }
-
 
     private static String[] soportado(String peticionGet) {
         String[] ans = new String[3];
@@ -139,7 +137,6 @@ public class webServer {
             ans[2] = "text/html";
         } 
         else if (peticionGet.endsWith(".js")) {
-            System.out.println("entro por js");
             ans[0] = "ok";
             ans[1] = "";
             ans[2] = "application/json";
@@ -167,7 +164,7 @@ public class webServer {
         out.println("Date: " + new Date());
         out.println("Content-type: " + type);
         out.println("Content-length: " + response.length());
-        out.println("\r\n");
+        out.println();
         out.flush();
         // Content
 
