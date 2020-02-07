@@ -137,6 +137,7 @@ public class webServer {
             ans[2] = "text/html";
         } 
         else if (peticionGet.endsWith(".js")) {
+            System.out.println("entro por js");
             ans[0] = "ok";
             ans[1] = "";
             ans[2] = "application/json";
