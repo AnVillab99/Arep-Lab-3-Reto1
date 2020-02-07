@@ -28,24 +28,25 @@ To run this program on local, write in console:
 > heroku local web (port:5000)
 or run directly the java code of webServer (port:4567)
 
-the existing files are : index.html
-                img1.jpg
-                img2.png
+the existing files are : 
+                /index.html
+                /img1.jpg
+                /img2.png
 
 index page  :
-![index.html](https://github.com/AnVillab99/Arep-Lab-3-Reto1/blob/master/resources/img/index.png)
+![index.html](https://github.com/AnVillab99/Arep-Lab-3-Reto1/blob/master/resources/img/index.PNG)
 
 Not found page :
-![not found](https://github.com/AnVillab99/Arep-Lab-3-Reto1/blob/master/resources/img/notFound.png)
+![not found](https://github.com/AnVillab99/Arep-Lab-3-Reto1/blob/master/resources/img/notFound.PNG)
 
 Not supported media page :
-![not supportde media](https://github.com/AnVillab99/Arep-Lab-3-Reto1/blob/master/resources/img/notSupportedMedia.png)
+![not supportde media](https://github.com/AnVillab99/Arep-Lab-3-Reto1/blob/master/resources/img/notSupportedMedia.PNG)
 
 img1.jpg:
-![jpg](https://github.com/AnVillab99/Arep-Lab-3-Reto1/blob/master/resources/img/img1.png)
+![jpg](https://github.com/AnVillab99/Arep-Lab-3-Reto1/blob/master/resources/img/img1.PNG)
 
 img2.png :
-![png](https://github.com/AnVillab99/Arep-Lab-3-Reto1/blob/master/resources/img/img2.png)
+![png](https://github.com/AnVillab99/Arep-Lab-3-Reto1/blob/master/resources/img/img2.PNG)
 
 
 ## Design
