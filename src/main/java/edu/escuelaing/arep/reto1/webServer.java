@@ -28,7 +28,7 @@ public class webServer {
 
     public static void main(String[] args) throws IOException {
         PORT = getPort();
-        System.out.println(PORT);
+        System.out.println("puerto "+PORT);
 
         ServerSocket serverSocket = null;
         serverSocket = new ServerSocket(PORT);
