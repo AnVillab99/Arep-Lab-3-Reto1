@@ -53,17 +53,7 @@ public class webServer {
                     outS = clientSocket.getOutputStream();
                     String inputLine = in.readLine();
                     String[] header = inputLine.split(" ");
-                    /*while (inputLine != null) {
-                        
-                        if (!(in.ready())) {
-                            //System.out.println("como entra aca");
-                            System.out.println("xxxxxxxxxxxxxxx");
-                            break;
-                            //break;
-                        }
-                        inputLine = in.readLine();
-        
-                    }*/
+                
         
                     if (header[0].equals("GET")) {
                         File rFile = null;
@@ -83,10 +73,7 @@ public class webServer {
                                 }
                             }
                             else {
-                                /*if(header[1].endsWith(".ico")){
-                                    System.out.println("favi");
-                                }
-                                else{*/
+                        
                                     System.out.println("es el header "+header[1]);
                                     rFile = new File(ROOT, UNSUPPORTED_MEDIA_TYPE);
                                     respond(out, dataOut, rFile, "text/html", "415",ROOT+ UNSUPPORTED_MEDIA_TYPE,outS);
@@ -204,20 +191,8 @@ public class webServer {
                     result.append(res);
                 }
                 out.println(result);
-                // byte[] fileByte = new byte[(int) response.length()];
-                // FileInputStream fileO = null;
-                // fileO = new FileInputStream(response);
-                // fileO.read(fileByte);
-
-                // if (fileO != null) {
-                //     fileO.close();
-                // }
-                // out.println(fileByte);
                 out.flush();
                 out.close();
-                // dataOut.write(fileByte, 0, (int) response.length());
-                // dataOut.flush();
-                // dataOut.close();
             }
         } catch (Exception e) {
             System.out.println("erro en envio");
