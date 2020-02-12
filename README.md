@@ -27,6 +27,8 @@ To deploy on local, the Procfile must be changed to:
 To run this program on local, write in console:
 > heroku local web (port:5000)
 or run directly the java code of webServer (port:4567)
+on heroku:
+> https://obscure-lowlands-08576.herokuapp.com/index.html
 
 the existing files are : 
                 /index.html
