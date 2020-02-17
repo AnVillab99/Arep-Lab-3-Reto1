@@ -4,7 +4,6 @@ import java.io.BufferedOutputStream;
 import java.io.BufferedReader;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -12,7 +11,6 @@ import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.util.Date;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
@@ -25,7 +23,12 @@ public class webServer {
     static final String METHOD_NOT_ALLOWED = "/NOT_SUPPORTED.html";
     static final String UNSUPPORTED_MEDIA_TYPE = "/NOT_SUPPORTED_MEDIA.html";
     static int PORT;
-
+    
+    /**
+     * Este metodo es el que se encarga de recibir y analizar las peticiones que le llegan al servidor, rechaza las 
+     * que no son peticiones get, preguntan por archivos que no existen o tratan de usar metodos
+     * no soportados
+     */
     public static void main(String[] args) throws IOException {
         PORT = getPort();
         System.out.println("puerto "+PORT);
@@ -112,6 +115,13 @@ public class webServer {
 
     }
 
+
+    /**
+     * Este metodo analiza la peticion, el tipo de archivo pedido. Si es un archivo soportado inidca donde encontrarlo
+     * y el MIME type que debe tener el header de la peticion
+     * @param String la peticion
+     * @return String[] un array indicando si la peticion es valida, donde esta el archivo y el mime type
+     */
     private static String[] soportado(String peticionGet) {
         String[] ans = new String[3];
         System.out.println("peticion es : "+peticionGet);
@@ -145,6 +155,10 @@ public class webServer {
 
     }
 
+    /**
+     * metodo retorna el puerto por el que se aceptan peticiones
+     * @retunr int el puerto
+     */
     static int getPort() {
         if (System.getenv("PORT") != null) {
         return Integer.parseInt(System.getenv("PORT"));
@@ -152,6 +166,16 @@ public class webServer {
         return 4567; //returns default port if heroku-port isn't set
         }
 
+    /**
+     * Este metodo responde la peticion al cliente
+     * @param out printwriter
+     * @param dataOut bufferedoutputstream
+     * @param response espuesta
+     * @param type mime type
+     * @param code codigo http
+     * @param filePath path del archivo
+     * @param outS outputstream
+     */
     private static void respond(PrintWriter out, BufferedOutputStream dataOut, File response, String type,String code, String filePath, OutputStream outS) {
         String header = "HTTP/1.1 " + code+"\r\n"+
         "Access-Control-Allow-Origin: *\r\n"+
@@ -193,6 +217,7 @@ public class webServer {
                 out.println(result);
                 out.flush();
                 out.close();
+                reader.close();
             }
         } catch (Exception e) {
             System.out.println("erro en envio");
