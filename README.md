@@ -6,7 +6,7 @@ This laboratory intends for the students to create web servers on java, that are
 ## Getting Started
 
 You can download a copy of the project from github.
-The javadocs are on target/site/apidcos
+
 
 ### Prerequisites
 
