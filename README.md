@@ -1,4 +1,4 @@
-# Arep-Lab-3
+# Arep-Lab-3 Challenge1
 [![CircleCI](https://circleci.com/gh/AnVillab99/Arep-Lab-3-Reto1.svg?style=svg)](https://circleci.com/gh/AnVillab99/Arep-Lab-3-Reto1)
 
 This laboratory intends for the students to create web servers on java, that are able to recieve get petitions and asnwer them with the requested file, if it exists.
@@ -6,6 +6,7 @@ This laboratory intends for the students to create web servers on java, that are
 ## Getting Started
 
 You can download a copy of the project from github.
+The javadocs are on target/site/apidcos
 
 ### Prerequisites
 
