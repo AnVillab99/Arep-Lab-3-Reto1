@@ -76,11 +76,8 @@ public class webServer {
                                 }
                             }
                             else {
-                        
-                                    System.out.println("es el header "+header[1]);
                                     rFile = new File(ROOT, UNSUPPORTED_MEDIA_TYPE);
                                     respond(out, dataOut, rFile, "text/html", "415",ROOT+ UNSUPPORTED_MEDIA_TYPE,outS);
-                                //}
                             }
                         }
                     }
