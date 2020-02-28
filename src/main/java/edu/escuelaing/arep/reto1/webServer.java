@@ -141,7 +141,7 @@ public class webServer {
         else if (peticionGet.endsWith(".js")) {
             ans[0] = "ok";
             ans[1] = "";
-            ans[2] = "application/json";
+            ans[2] = "application/javascript";
         } 
         else {
             ans[0] = "error";
